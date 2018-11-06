@@ -1,19 +1,20 @@
 pipeline {
     agent any
     stages {
-        stage('---clean---') {
+        stage('clone repo and clean it') {
             steps {
-                bat "mvn clean"
+                bat "git clone https://github.com/simplilearn-github/jenkins-repo.git"
+                bat "mvn clean -f jenkins-repo"
             }
         }
-        stage('--test--') {
+        stage('Test') {
             steps {
-                bat "mvn test"
+                bat "mvn test -f jenkins-repo"
             }
         }
-        stage('--package--') {
+        stage('Deploy') {
             steps {
-                bat "mvn package"
+                bat "mvn package -f jenkins-repo"
             }
         }
     }
