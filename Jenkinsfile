@@ -1,21 +1,26 @@
 pipeline {
     agent any
-    stages {
-        stage('clone repo and clean it') {
-            steps {
-                bat "git clone https://github.com/simplilearn-github/jenkins-repo.git"
-                bat "mvn clean -f jenkins-repo"
+            stages {
+                    stage('One') {
+                            steps {
+                                    echo 'This is our first Jenkins pipeline'
+                            }
+                    }
+                
+                    stage('Two') {
+                            steps {
+                                    input('Do you want to proceed?')
+                            }
+                    }
+                    stage('Three') {
+                        when {
+                            not {
+                                  branch "master"
+                            }
+                        }
+                        steps {
+                                echo "Hello"
+                        }
+                    }
+                 }
             }
-        }
-        stage('Test') {
-            steps {
-                bat "mvn test -f jenkins-repo"
-            }
-        }
-        stage('Deploy') {
-            steps {
-                bat "mvn package -f jenkins-repo"
-            }
-        }
-    }
-}
