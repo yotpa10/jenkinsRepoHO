@@ -9,7 +9,7 @@ pipeline {
                     
                     stage('Build') {
                             steps {
-                                     withMaven(maven : 'maven_3_5_0') {
+                                     withMaven(maven: 'Maven-3-5-0') {
                                         echo 'This is our Build Stage'
                                     }
                             }
@@ -17,7 +17,7 @@ pipeline {
                 
                     stage('Test') {
                             steps {
-                                    withMaven(maven : 'maven_3_5_0') {
+                                   withMaven(maven: 'Maven-3-5-0') {
                                             echo 'This is our Testing Stage'
                                         }
                             }
